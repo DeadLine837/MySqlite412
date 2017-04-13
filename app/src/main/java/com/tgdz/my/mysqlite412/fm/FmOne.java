@@ -20,8 +20,6 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.tgdz.my.mysqlite412.HTab;
 import com.tgdz.my.mysqlite412.HTabDb;
-import com.tgdz.my.mysqlite412.OneFm1;
-import com.tgdz.my.mysqlite412.OneFmAdapter;
 import com.tgdz.my.mysqlite412.R;
 
 public class FmOne extends Fragment implements OnPageChangeListener {
@@ -71,7 +69,16 @@ public class FmOne extends Fragment implements OnPageChangeListener {
 	 */
 	private void initView() {
 		List<HTab> hTabs = HTabDb.getSelected();
-		for (int i = 0; i < hTabs.size(); i++) {
+
+		//分离首页-首页Fm11
+		OneFm11 fm11 = new OneFm11();
+		Bundle bundle11 = new Bundle();
+		bundle11.putString("name", hTabs.get(0).getName());
+		fm11.setArguments(bundle11);
+		newsList.add(fm11);
+
+
+		for (int i = 1; i < hTabs.size(); i++) {
 			OneFm1 fm1 = new OneFm1();
 			Bundle bundle = new Bundle();
 			bundle.putString("name", hTabs.get(i).getName());
