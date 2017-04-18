@@ -17,21 +17,21 @@ public class TabDb {
 	 * 获得所有碎片
 	 */
 	public static Class[] getFramgent(){
-		Class[] cls = {FmOne.class,FmTwo.class,FmThree.class,FmFour.class};
+		Class[] cls = {FmFour.class,FmTwo.class,FmOne.class,FmThree.class};
 		return cls ;
 	}
 	/***
 	 * 获得所有点击前的图片
 	 */
 	public static int[] getTabsImg(){
-		int[] img = {R.mipmap.home1, R.mipmap.add1, R.mipmap.product1, R.mipmap.user1};
+		int[] img = {R.mipmap.home1, R.mipmap.add1, R.mipmap.glod1, R.mipmap.user1};
 		return img ;
 	}
 	/***
 	 * 获得所有点击后的图片
 	 */
 	public static int[] getTabsImgLight(){
-		int[] img = {R.mipmap.home2, R.mipmap.add2, R.mipmap.product2, R.mipmap.user2};
+		int[] img = {R.mipmap.home2, R.mipmap.add2, R.mipmap.glod2, R.mipmap.user2};
 		return img ;
 	}
 }

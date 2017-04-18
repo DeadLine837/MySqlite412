@@ -16,8 +16,7 @@ public class FmFour extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment, container,false);
-		((TextView) view.findViewById(R.id.fm_text)).setText(TabDb.getTabsTxt()[3]);
+		View view = inflater.inflate(R.layout.fragment_four, container,false);
 		return view;
 	}
 }

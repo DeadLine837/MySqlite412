@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+        <ScrollView
+            android:id="@+id/sv_goods_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#eeeff3"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="203dp"
+                    android:background="@color/white">
+
+                    <!-- 自动轮播的第三方控件 -->
+                    <com.bigkoo.convenientbanner.ConvenientBanner xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/vp_item_goods_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        app:canLoop="true" />
+                </FrameLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_up_slide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="30dp"
+            android:src="@mipmap/ic_launcher"
+            app:backgroundTint="#ffffff"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            app:rippleColor="#ffffff" />
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
