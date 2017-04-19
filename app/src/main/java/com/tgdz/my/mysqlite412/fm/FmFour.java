@@ -1,16 +1,21 @@
 package com.tgdz.my.mysqlite412.fm;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
+import com.melnykov.fab.FloatingActionButton;
 import com.tgdz.my.mysqlite412.GlideImageLoader;
 import com.tgdz.my.mysqlite412.R;
 import com.youth.banner.Banner;
@@ -21,6 +26,9 @@ import java.util.List;
 
 public class FmFour extends Fragment implements SwipeRefreshLayout.OnRefreshListener, OnBannerListener {
     Banner banner;
+
+    PullRefreshLayout layout;
+    boolean btn = true;
     static final int REFRESH_COMPLETE = 0X1112;
     SwipeRefreshLayout mSwipeLayout;
 
@@ -55,6 +63,46 @@ public class FmFour extends Fragment implements SwipeRefreshLayout.OnRefreshList
         banner.setImages(list)
                 .setImageLoader(new GlideImageLoader())
                 .start();
+
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        String[] array = new String[50];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = "string " + i;
+        }
+        recyclerView.setAdapter(new OneFm12.ArrayAdapter(getContext(), array));
+
+        layout = (PullRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                layout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        layout.setRefreshing(false);
+                    }
+                }, 2000);
+
+            }
+        });
+        layout.setRefreshStyle(PullRefreshLayout.STYLE_RING);
+//        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.multiple_actions);
+//        fab.attachToRecyclerView(recyclerView);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if (btn) {
+//                    layout.setRefreshing(true);
+//                    btn = false;
+//                } else {
+//                    layout.setRefreshing(false);
+//                    btn = true;
+//                }
+//            }
+//        });
+
         return view;
     }
 
@@ -70,7 +118,7 @@ public class FmFour extends Fragment implements SwipeRefreshLayout.OnRefreshList
         Toast.makeText(getContext(), "你点击了：ddddd" + position, Toast.LENGTH_SHORT).show();
     }
 
-    //如果你需要考虑更好的体验，可以这么操作
+    //如果你需要考虑更好的体验，可以这么操作 
     @Override
     public void onStart() {
         super.onStart();
@@ -84,4 +132,45 @@ public class FmFour extends Fragment implements SwipeRefreshLayout.OnRefreshList
         //结束轮播
         banner.stopAutoPlay();
     }
+
+    static class ArrayAdapter extends RecyclerView.Adapter<OneFm12.ViewHolder> {
+
+        private String[] mArray;
+        private Context mContext;
+
+        public ArrayAdapter(Context context, String[] array) {
+            mContext = context;
+            mArray = array;
+        }
+
+        @Override
+        public OneFm12.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_12, viewGroup, false);
+            OneFm12.ViewHolder holder = new OneFm12.ViewHolder(view);
+            return holder;
+        }
+
+        @Override
+        public void onBindViewHolder(OneFm12.ViewHolder viewHolder, int position) {
+
+            viewHolder.mTextView.setText(mArray[position] + "阳光春城");
+        }
+
+        @Override
+        public int getItemCount() {
+            return mArray.length;
+        }
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView mTextView;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            mTextView = (TextView) itemView.findViewById(R.id.text_name);
+        }
+    }
+
+
 }
