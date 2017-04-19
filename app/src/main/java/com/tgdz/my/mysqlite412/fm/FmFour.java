@@ -37,7 +37,7 @@ public class FmFour extends Fragment implements SwipeRefreshLayout.OnRefreshList
             switch (msg.what) {
                 case REFRESH_COMPLETE:
                     mSwipeLayout.setRefreshing(false);
-                    Toast.makeText(getContext(), "你点击了：" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "你点击了：", Toast.LENGTH_SHORT).show();
 
                     break;
             }
@@ -108,7 +108,7 @@ public class FmFour extends Fragment implements SwipeRefreshLayout.OnRefreshList
 
     @Override
     public void onRefresh() {
-        Toast.makeText(getContext(), "你点击了：" , Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "你点击了：", Toast.LENGTH_SHORT).show();
 
         mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE, 2000);
     }
