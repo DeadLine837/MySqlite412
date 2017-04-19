@@ -21,6 +21,7 @@ public class OneFm12 extends Fragment {
     private String name;
     PullRefreshLayout layout;
     boolean btn = true;
+
     @Override
     public void setArguments(Bundle args) {
         name = args.getString("name");
@@ -45,9 +46,7 @@ public class OneFm12 extends Fragment {
                 layout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        for (int i = 0; i < 1000; i++) {
-                            Log.e("onRefresh", "onRefresh: " + i);
-                        }
+
                         layout.setRefreshing(false);
                     }
                 }, 2000);
@@ -65,10 +64,10 @@ public class OneFm12 extends Fragment {
 
                 if (btn) {
                     layout.setRefreshing(true);
-                    btn=false;
+                    btn = false;
                 } else {
                     layout.setRefreshing(false);
-                    btn=true;
+                    btn = true;
                 }
             }
         });
@@ -87,12 +86,15 @@ public class OneFm12 extends Fragment {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            return new ViewHolder(View.inflate(viewGroup.getContext(), android.R.layout.simple_list_item_1, null));
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_12, viewGroup, false);
+            ViewHolder holder = new ViewHolder(view);
+            return holder;
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder viewHolder, int i) {
-            viewHolder.mTextView.setText(mArray[i]);
+        public void onBindViewHolder(ViewHolder viewHolder, int position) {
+
+            viewHolder.mTextView.setText(mArray[position] + "阳光春城");
         }
 
         @Override
@@ -107,7 +109,7 @@ public class OneFm12 extends Fragment {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTextView = (TextView) itemView;
+            mTextView = (TextView) itemView.findViewById(R.id.text_name);
         }
     }
 
