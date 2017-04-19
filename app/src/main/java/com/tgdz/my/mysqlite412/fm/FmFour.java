@@ -18,6 +18,7 @@ import com.baoyz.widget.PullRefreshLayout;
 import com.melnykov.fab.FloatingActionButton;
 import com.tgdz.my.mysqlite412.GlideImageLoader;
 import com.tgdz.my.mysqlite412.R;
+import com.tgdz.my.mysqlite412.TabDb;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class FmFour extends Fragment implements SwipeRefreshLayout.OnRefreshListener, OnBannerListener {
     Banner banner;
-
+    View view;
     PullRefreshLayout layout;
     boolean btn = true;
     static final int REFRESH_COMPLETE = 0X1112;
@@ -47,7 +48,7 @@ public class FmFour extends Fragment implements SwipeRefreshLayout.OnRefreshList
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_four, container, false);
+        view = inflater.inflate(R.layout.fragment_four, container, false);
 
         mSwipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
         mSwipeLayout.setOnRefreshListener(this);
@@ -103,6 +104,7 @@ public class FmFour extends Fragment implements SwipeRefreshLayout.OnRefreshList
 //            }
 //        });
 
+        init();
         return view;
     }
 
@@ -173,4 +175,28 @@ public class FmFour extends Fragment implements SwipeRefreshLayout.OnRefreshList
     }
 
 
+    private void init() {
+
+        final View actionA = view.findViewById(R.id.action_a);
+        final View actionB = view.findViewById(R.id.action_b);
+        final View actionC = view.findViewById(R.id.action_c);
+        actionA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "actionAAA", Toast.LENGTH_SHORT).show();
+            }
+        });
+        actionB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "actionBBB", Toast.LENGTH_SHORT).show();
+            }
+        });
+        actionC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "actionCCC", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
